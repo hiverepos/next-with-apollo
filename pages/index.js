@@ -11,7 +11,9 @@ import { initializeApollo } from "../lib/apolloClient";
 const IndexPage = () => (
   <App>
     <Header />
-    <InfoBox>ℹ️ This page shows how to use SSG with Apollo 🎨 😎.</InfoBox>
+    <span>
+      <InfoBox>ℹ This page shows how to use SSG with Apollo 🎨 ⌚.</InfoBox>
+    </span>
     <Submit />
     <PostList />
   </App>
