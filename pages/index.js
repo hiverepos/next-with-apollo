@@ -12,7 +12,7 @@ const IndexPage = () => (
   <App>
     <Header />
     <span>
-      <InfoBox>ℹ This page shows how to use SSG with Apollo 🎨 ⌚.</InfoBox>
+      <InfoBox>ℹ This page shows how to use SSG with Apollo 🎨 ♥ </InfoBox>
     </span>
     <Submit />
     <PostList />
