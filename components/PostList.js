@@ -3,16 +3,13 @@ import ErrorMessage from './ErrorMessage'
 import PostUpvoter from './PostUpvoter'
 
 export const ALL_POSTS_QUERY = gql`
-  query allPosts($first: Int!, $skip: Int!) {
-    allPosts(orderBy: { createdAt: desc }, first: $first, skip: $skip) {
-      id
-      title
-      votes
-      url
-      createdAt
-    }
-    _allPostsMeta {
-      count
+  {
+    posts{
+      data {
+        id
+        title
+        body
+      }
     }
   }
 `
@@ -47,13 +44,12 @@ export default function PostList() {
   if (error) return <ErrorMessage message="Error loading posts." />
   if (loading && !loadingMorePosts) return <div>Loading</div>
 
-  const { allPosts, _allPostsMeta } = data
-  const areMorePosts = allPosts.length < _allPostsMeta.count
+  const { posts } = data
 
   return (
     <section>
       <ul>
-        {allPosts.map((post, index) => (
+        {posts.data.map((post, index) => (
           <li key={post.id}>
             <div>
               <span>{index + 1}. </span>
@@ -63,11 +59,7 @@ export default function PostList() {
           </li>
         ))}
       </ul>
-      {areMorePosts && (
-        <button onClick={() => loadMorePosts()} disabled={loadingMorePosts}>
-          {loadingMorePosts ? 'Loading...' : 'Show More'}
-        </button>
-      )}
+
       <style jsx>{`
         section {
           padding-bottom: 20px;
